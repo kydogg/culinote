@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecipeVCViewController.swift
 //  Culinote
 //
 //  Created by Kyle D. Baker on 10/13/24.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class RecipeListVC: UIViewController, UITableViewDelegate, UITable {
-    
+class RecipeVC: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemRed
-    }
-}
 
+        // Do any additional setup after loading the view.
+    }
+
+}

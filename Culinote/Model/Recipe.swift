@@ -13,6 +13,6 @@ class Recipe: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var ingredients: String?
     @NSManaged var instructions: String?
-    @NSManaged var imageURL: UIImage?
+    @NSManaged var image: Data?
     
 }
