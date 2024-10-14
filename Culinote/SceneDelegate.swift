@@ -14,20 +14,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        // Ensure the scene is a UIWindowScene
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+        var window: UIWindow?
 
-        // Create a UIWindow and set its windowScene
-        window = UIWindow(windowScene: windowScene)
+            func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+                guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        // Set the initial view controller
-        let navController = UINavigationController(rootViewController: RecipeListVC())
+                // Initialize the window
+                let window = UIWindow(windowScene: windowScene)
 
-        // Set the window's rootViewController to the navigation controller
-        window?.rootViewController = navController
+                // Initialize the tab bar controller
+                let tabBarController = UITabBarController()
 
-        // Make the window visible
-        window?.makeKeyAndVisible()
+                // Initialize the Recipes tab
+                let recipesNavController = UINavigationController(rootViewController: RecipeListVC())
+                recipesNavController.tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "fork.knife"), tag: 0)
+
+                // Add more tabs later as needed, but for now, we only add the Recipes tab
+                tabBarController.viewControllers = [recipesNavController]
+
+                // Set the root view controller
+                window.rootViewController = tabBarController
+                self.window = window
+                window.makeKeyAndVisible()
+            }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

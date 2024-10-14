@@ -10,17 +10,36 @@ import UIKit
 class RecipeListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableView: UITableView!
-    var recipes: [Recipe] = []
-    
+    var categories = [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Dessert",
+        "Snacks",
+        "Appetizers",
+        "Drinks",
+        "Salads",
+        "Soups",
+        "Vegetarian",
+        "Vegan",
+        "Gluten-Free",
+        "Keto/Low-Carb",
+        "Pasta",
+        "Baked Goods",
+        "Slow Cooker",
+        "Grilling/BBQ",
+        "Seafood",
+        "Healthy",
+        "Comfort Food",
+        "International"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.title = "Recipes"
+        self.title = "Recipe Categories"
         
         configureTableView()
-//        fetchRecipes()
-        
     }
     
     private func configureTableView() {
@@ -28,27 +47,28 @@ class RecipeListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RecipeCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CategoryCell")
         view.addSubview(tableView)
     }
     
-    
-    private func fetchRecipes() {
-        recipes = RecipeManager.shared.fetchRecipes()
-        tableView.reloadData()
-    }
-    
-    
-    // MARK: - UITableView DataSource_
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath)
-        let recipe = recipes[indexPath.row]
+    // MARK: - UITableView DataSource
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return categories.count
+        }
         
-        cell.textLabel?.text = recipe.title
-        return cell
-    }
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+            let category = categories[indexPath.row]
+            cell.textLabel?.text = category
+            cell.accessoryType = .disclosureIndicator // Show an arrow to indicate navigation
+            return cell
+        }
+        
+        // Handle navigation to recipes by category
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let selectedCategory = categories[indexPath.row]
+            let recipeListVC = RecipeByCategoryVC()
+            recipeListVC.category = selectedCategory // Pass the selected category to the next VC
+            navigationController?.pushViewController(recipeListVC, animated: true)
+        }
 }
