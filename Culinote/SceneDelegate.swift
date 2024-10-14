@@ -44,6 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tag: 2
         )
 
+        
         // MARK: - Store Tab
         let storeNavController = UINavigationController(rootViewController: StoreVC())
         storeNavController.tabBarItem = UITabBarItem(

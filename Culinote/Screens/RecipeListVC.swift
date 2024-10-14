@@ -37,7 +37,7 @@ class RecipeListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.title = "Recipe Categories"
+        self.title = "Recipes"
         
         configureTableView()
     }
