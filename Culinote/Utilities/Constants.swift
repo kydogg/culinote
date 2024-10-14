@@ -8,6 +8,13 @@
 import UIKit
 
 enum SFSymbols {
+    
+    static let recipes = UIImage(systemName: "book.closed")
+    static let favorites = UIImage(systemName: "heart.fill")
+    static let notes = UIImage(systemName: "note.text")
+    static let profile = UIImage(systemName: "person.circle.fill")
+    static let store = UIImage(systemName: "cart.fill")
+
     static let breakfast = UIImage(systemName: "sunrise.fill")        // Breakfast
     static let lunch = UIImage(systemName: "fork.knife")              // Lunch
     static let dinner = UIImage(systemName: "fork.knife.circle.fill") // Dinner
@@ -18,7 +25,7 @@ enum SFSymbols {
     static let salads = UIImage(systemName: "leaf.fill")              // Salads
     static let soups = UIImage(systemName: "flame.fill")              // Soups (Alternate: "drop")
     static let vegetarian = UIImage(systemName: "leaf.arrow.triangle.circlepath") // Vegetarian
-    static let vegan = UIImage(systemName: "leaf.circle.fill")        // Vegan (Alternate: "carrot.fill" if custom)
+    static let vegan = UIImage(systemName: "leaf.circle.fill")
     static let glutenFree = UIImage(systemName: "allergens")          // Gluten-Free (You can design a wheat-free icon as custom)
     static let ketoLowCarb = UIImage(systemName: "hare.fill")         // Keto/Low-Carb (Alternate: "circle.lefthalf.fill")
     static let pasta = UIImage(systemName: "fork.knife.circle")       // Pasta

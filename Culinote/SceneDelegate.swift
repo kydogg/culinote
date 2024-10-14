@@ -11,66 +11,73 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        var window: UIWindow?
 
-            func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-                guard let windowScene = (scene as? UIWindowScene) else { return }
+        // Ensure the scene is a UIWindowScene
+        guard let windowScene = (scene as? UIWindowScene) else { return }
 
-                // Initialize the window
-                let window = UIWindow(windowScene: windowScene)
+        window = UIWindow(windowScene: windowScene)
 
-                // Initialize the tab bar controller
-                let tabBarController = UITabBarController()
+        let tabBarController = UITabBarController()
 
-                // Initialize the Recipes tab
-                let recipesNavController = UINavigationController(rootViewController: RecipeListVC())
-                recipesNavController.tabBarItem = UITabBarItem(title: "Recipes", image: UIImage(systemName: "fork.knife"), tag: 0)
+        // MARK: - Recipes Tab
+        let recipesNavController = UINavigationController(rootViewController: RecipeListVC())
+        recipesNavController.tabBarItem = UITabBarItem(
+            title: "Recipes",
+            image: SFSymbols.recipes,
+            tag: 0
+        )
 
-                // Add more tabs later as needed, but for now, we only add the Recipes tab
-                tabBarController.viewControllers = [recipesNavController]
+        // MARK: - Favorites Tab
+        let favoritesNavController = UINavigationController(rootViewController: FavoritesVC())
+        favoritesNavController.tabBarItem = UITabBarItem(
+            title: "Favorites",
+            image: SFSymbols.favorites,
+            tag: 1
+        )
 
-                // Set the root view controller
-                window.rootViewController = tabBarController
-                self.window = window
-                window.makeKeyAndVisible()
-            }
-        
+        // MARK: - Notes Tab
+        let notesNavController = UINavigationController(rootViewController: NotesVC())
+        notesNavController.tabBarItem = UITabBarItem(
+            title: "Notes",
+            image: SFSymbols.notes,
+            tag: 2
+        )
+
+        // MARK: - Store Tab
+        let storeNavController = UINavigationController(rootViewController: StoreVC())
+        storeNavController.tabBarItem = UITabBarItem(
+            title: "Store",
+            image: SFSymbols.store,
+            tag: 3
+        )
+
+        // MARK: - Profile Tab
+        let profileNavController = UINavigationController(rootViewController: ProfileVC())
+        profileNavController.tabBarItem = UITabBarItem(
+            title: "Profile",
+            image: SFSymbols.profile,
+            tag: 4
+        )
+
+        // Add all view controllers to the tab bar
+        tabBarController.viewControllers = [recipesNavController, favoritesNavController, notesNavController, storeNavController, profileNavController]
+
+        // Set the root view controller to the tab bar controller
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
-    }
+    func sceneDidDisconnect(_ scene: UIScene) { }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
+    func sceneDidBecomeActive(_ scene: UIScene) { }
 
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
+    func sceneWillResignActive(_ scene: UIScene) { }
 
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
+    func sceneWillEnterForeground(_ scene: UIScene) { }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
-
-
 }
-
